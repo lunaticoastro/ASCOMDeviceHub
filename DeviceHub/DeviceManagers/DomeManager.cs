@@ -460,8 +460,8 @@ namespace ASCOM.DeviceHub
 
 				if ( SlavedSlewState.IsSlewInProgress ) // The telescope is being slewed.
 				{
-					if ( !Status.Slewing )
-					{
+					//if ( !Status.Slewing )	// slewing or not!
+					//{
 						// The telescope is slewing and we are slaved but not slewing so initiate a dome slew
 						// to the telescope's target position.
 
@@ -500,12 +500,12 @@ namespace ASCOM.DeviceHub
 								 + "slew caught an exception. Details follow:" );
 							LogActivityLine( ActivityMessageTypes.Commands, xcp.Message );
 						}
-					}
+					//}
 				}
 				else if ( DateTime.Now > nextAdjustmentTime )
 				{
-					if ( !Status.Slewing )
-					{
+					//if ( !Status.Slewing )	// again, slewing or not
+					//{
 						// Here is where we re-slew the dome to adjust for non-slew scope movement such as
 						// tracking or jogging.
 
@@ -524,7 +524,7 @@ namespace ASCOM.DeviceHub
 								 + "caught an exception. Details follow:" );
 							LogActivityLine( ActivityMessageTypes.Commands, xcp.Message );
 						}
-					}
+					//}
 
 					TimeSpan syncSpan = new TimeSpan( 0, 0, Globals.DomeLayout.SlaveInterval );
 					returnTime = DateTime.Now + syncSpan;
